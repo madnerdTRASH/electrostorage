@@ -1,0 +1,25 @@
+Présentation
+====
+
+Ce projet à pour but de gérer son stock de composants électroniques
+Il permet aussi de permettre à d'autres personnes de savoir ce que vous avez.
+
+Pré-requis
+====
+
+- Serveur Apache conseillé (Non testé sur les autres serveurs types Nginx ...)
+- PHP 5.3 minimum (facultatif, conseillé)
+- Un peu de bon sens :)
+
+Installation
+====
+Tout est expliqué sur [A METTRE]
+
+
+Librairies utilisées
+==
+
+- Responsive / Cross browser / CSS : Twitter boostrap
+- Javascript : JQuery (http://www.jquery.com)
+- Moteur template : RainTPL (http://www.raintpl.com)
+- Base du site : HCC (http://blog.idleman.fr/?p=1970)

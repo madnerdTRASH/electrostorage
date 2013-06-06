@@ -1,0 +1,25 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+
+  Creator: Sarrailh Rémi (maditnerd@gmail.com)
+  Site: http://smarturl.it/remi
+  Twitter: @maditnerd
+  Location: Montpellier, France
+
+  Based on the HCC
+
+  Creator: Idleman (idleman@idleman.fr)
+  Site: http://blog.idleman.fr
+  Twitter: none
+  Location: Nowhere
+
+/* THANKS */
+  Names (& URL): BoilerPlate, Modernizr, jQuery, Initializr, PHP authors & chuck norris
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: Boostrap, jQuery
+  Software: Sublime Text2

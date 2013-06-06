@@ -1,0 +1,246 @@
+{include="header"}
+	{if="isset($idcomponent)"}
+<a href="settings.php" class="btn btn-danger">Retour</a>
+	<h1>{$name}</h1>
+
+
+	{* 
+
+	--------------------
+	Components
+	--------------------
+	
+	*}
+	
+	<table class="table table-striped">
+		<tr>
+		<td>
+		    <form class="form-horizontal" action="action.php?action=MODIFY_COMPONENT" method="POST" enctype="multipart/form-data">
+		    	<input  name="idcomponent" value="{$idcomponent}" type="hidden">
+				<div class="control-group">
+					<label class="control-label" for="inputEmail" >Nom du composant</label>
+					<div class="controls">
+					<input type="text" name="componentName" id="inputEmail" value="{$name}" placeholder="Nom du composant">
+					</div>
+					</div>
+				<div class="control-group">
+					<label class="control-label" for="inputEmail" >Quantité</label>
+					<div class="controls">
+					<input type="text" name="componentQuantity" id="inputEmail" value="{$quantity}" placeholder="Over 9000">
+					</div>
+
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputPassword">Type de composants</label>
+
+						<div class="controls">
+							<input  name="idComponentType"  value="{$componentType_id}" type="hidden">
+							<div class="btn-group">
+								<button class="btn dropdown-toggle" data-toggle="dropdown">
+								<span id="componentType">{$componentType_name}</span>
+								 <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">						
+								<li style="cursor:pointer;">
+								<a onclick="$('#componentType').html('Non défini');$('input[name=\'idComponentType\']').val('0');">Non défini</a>
+								{loop="componentsType"}
+								<a onclick="$('#componentType').html('{$value['name']}');$('input[name=\'idComponentType\']').val('{$key}');">{$value['name']}</a>
+								{/loop}
+								</li>
+								</ul>
+							</div>
+						</div>		
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputPassword">Image</label>
+
+					<div class="controls">
+
+						<input  name="picture" id="inputImg" type="file" style="display:none">
+							<div class="input-append">
+							   <input id="photoCover" placeholder="Image (160x160)" class="input" type="text">
+							   <a class="btn" onclick="$('input[id=inputImg]').click();">Parcourir</a>
+
+							</div>
+
+							<img width="160" height="160" src="../../{$picture}"> 
+					</div>
+
+
+				</div>
+				<div class="control-group">
+				<label class="control-label"   for="inputPassword">Rangements</label>
+				<div class="controls">
+					<input class="span2" readonly="readonly" name="StorageInput" value="{$storagename}" id="appendedDropdownButton" type="text">
+					<input name="idStorage" value="{$storagekey}" type="hidden">
+					<div class="btn-group">
+					<button class="btn dropdown-toggle" data-toggle="dropdown">
+					Rangements
+					<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						{loop="storages"}
+						<li style="cursor:pointer;">
+							<a onclick="$('#appendedDropdownButton').val('{$value['name']}');$('input[name=\'idStorage\']').val('{$key}');">{$value['name']}</a>
+						</li>
+						{/loop}
+					</ul>
+					</div>
+				</div>
+				</div>
+				<div class="clear"></div>
+				<div class="control-group">
+					<label class="control-label" for="inputPassword">Emplacements</label>
+					<div class="controls">
+					<textarea rows="3" name="location" id="inputLocation" placeholder="Emplacements">{$location}</textarea>
+					</div>
+				</div>
+				    <div class="form-actions">
+					<button type="submit" class="btn btn-primary">Enregistrer</button>
+
+					</div>
+			</form>
+		
+		</td>
+		<td>
+		
+			<table class="table table-striped table-bordered">
+				{loop="components"}
+				<tr>
+					<td><strong>{$value['name']}</strong></td>
+					<td><code>{$storages[$value['Storage']]['name']}</code></td>
+					<td>
+						<a class="btn btn-danger" href="./action.php?action=DELETE_COMPONENT&amp;component={$key}"><i class="icon-remove icon-white"></i></a>
+						<a class="btn btn-warning" href="./modify.php?component={$key}"><i class="icon-edit icon-white"></i></a>
+					</td>
+				</tr>
+				
+				{/loop}
+			</table>
+		
+		</td>
+		</tr>
+
+	</table>
+	
+	{/if}
+
+
+{if="isset($idcomponentType)"}
+<a href="settings.php" class="btn btn-danger">Retour</a>
+	<h1>{$name}</h1>
+
+
+<table class="table table-striped">
+		<tr>
+		<td>
+		
+		    <form class="form-horizontal" action="action.php?action=MODIFY_COMPONENTTYPE" method="POST">
+		    	<input  name="idcomponenttype" value="{$idcomponentType}" type="hidden">
+				<div class="control-group">
+					<label class="control-label" for="inputComponents_type">Types de composants</label>
+					<div class="controls">
+		
+					<input type="text" name="component_type" value="{$name}" id="inputPlace" placeholder="Capteurs">
+					</div>
+				</div>
+				
+				    <div class="form-actions">
+					<button type="submit" class="btn btn-primary">Enregistrer</button>
+
+					</div>
+			</form>
+		
+		</td>
+		<td>
+		
+			<table class="table table-striped  table-bordered">
+				{loop="componentsType"}
+				<tr>
+					<td><strong>{$value['name']}</strong></td>
+					<td>
+						
+						<a class="btn btn-danger" href="./action.php?action=DELETE_COMPONENTTYPE&amp;componentType={$key}"><i class="icon-remove icon-white"></i></a>
+						<a class="btn btn-warning" href="./modify.php?componentType={$key}"><i class="icon-edit icon-white"></i></a>
+					</td>
+				</tr>
+				
+				{/loop}
+			</table>
+		
+		</td>
+		</tr>
+
+	</table>
+
+
+
+	{/if}
+
+
+	{if="isset($idstorage)"}
+<a href="settings.php?menu=2" class="btn btn-danger">Retour</a>
+<h1>{$name}</h1>
+	<table class="table table-striped">
+		<tr>
+		<td>
+		
+		    <form class="form-horizontal" action="action.php?action=MODIFY_STORAGE" method="POST">
+		    	<input  name="idstorage" value="{$idstorage}" type="hidden">
+				<div class="control-group">
+					<label class="control-label" for="inputPlace">Rangements</label>
+					<div class="controls">
+		
+					<input type="text" name="storage" value="{$name}" id="inputPlace" placeholder="boite">
+
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inputPlace">Détails</label>
+					<div class="controls">
+					<input type="text" name="details" value="{$details}" id="inputPlace" placeholder="Détails">
+					</div>
+				</div>
+				
+				    <div class="form-actions">
+					<button type="submit" class="btn btn-primary">Enregistrer</button>
+
+					</div>
+			</form>
+		
+		</td>
+		<td>
+		
+			<table class="table table-striped  table-bordered">
+				{loop="storages"}
+				<tr>
+					<td><strong>{$value['name']}</strong></td>
+					<td>
+						
+						<a class="btn btn-danger" href="./action.php?action=DELETE_STORAGE&amp;storage={$key}"><i class="icon-remove icon-white"></i></a>
+						<a class="btn btn-warning" href="./modify.php?storage={$key}"><i class="icon-edit icon-white"></i></a>
+					</td>
+				</tr>
+				
+				{/loop}
+			</table>
+		
+		</td>
+		</tr>
+
+	</table>
+	
+	</div>
+
+
+{/if}
+
+
+
+{include="footer"}
+	  <script type="text/javascript">
+	  
+$('input[id=inputImg]').change(function() {
+   $('#photoCover').val($(this).val());
+});
+</script>

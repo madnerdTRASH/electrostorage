@@ -1,0 +1,108 @@
+{include="header"}
+
+<!--
+ @nom: index
+ @auteur: Sarrailh Rémi (maditnerd@gmail.com)
+ @description: Page d'accueil
+-->
+<ul class="breadcrumb hidden-print">
+{if="!isset($noimages)"}
+<li><a href="?noimages=1">Enlever les images</a></li>
+--
+<li><a href="?sorting=bytype">Trier par type de composants</a></li>
+--
+<li><a href="?sorting=bylocation">Trier par emplacements</a></li>
+{else}
+<li><a href="?reset">Remettre les images</a></li>
+--
+<li><a href="?noimages=1&sorting=bytype">Trier par type de composants</a></li>
+
+--
+<li><a href="?noimages=1&sorting=bylocation">Trier par emplacements</a></li>
+{/if}
+</ul>
+
+
+   <div class="row">
+			<div class="span9">
+				<table class="table table-bordered">
+					<tr>
+						<th>Quantite</th>
+						<th>Nom</th>
+							{if="$value['componentType']!=='0'"}
+							<th>Type</th>
+							{/if}
+						<th>Emplacement</th>
+							{if="$value['picture']!=='pictures/'"}
+								{if="!isset($noimages)"}
+								<th>Image</th>
+								{/if}
+							{/if}
+							<th class="hidden-print">Actions</th>
+
+					</tr>
+					{loop="components"}
+
+					<tr>
+
+
+						
+						<td>
+							{$value['quantity']}
+						</td>
+						<td>
+							{$value['name']} 
+						</td>
+						<td>
+							{if="$value['componentType']!=='0'"}
+
+
+							{$componentsType[$value['componentType']]['name']}
+							{else}
+							Non défini
+
+							{/if}
+
+						</td>
+
+
+
+						<td>
+							{if="($value['location'])==''"}
+							Non précisé
+							{else}
+							{$value['location']}
+							{/if}
+						</td>
+						
+						{if="!isset($noimages)"}
+							<td>&nbsp
+								{if="$value['picture']!=='pictures/'"}
+								<img width="80" height="80" src="../../{$value['picture']}">
+								{/if}
+							</td>
+						{/if}
+
+						<td class="hidden-print">
+							<a class="btn btn-danger" href="./action.php?action=DELETE_COMPONENT&amp;component={$key}"><i class="icon-remove icon-white"></i></a>
+									<a class="btn btn-warning" href="./modify.php?component={$key}"><i class="icon-edit icon-white"></i></a>
+						</td>
+
+					</tr>
+					
+				
+					
+					{/loop}
+
+
+				</table>
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+	{include="footer"}
